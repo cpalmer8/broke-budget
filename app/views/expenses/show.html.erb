@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Amount:</strong>
+  <%= @expense.amount %>
+</p>
+
+<p>
+  <strong>Masterexpenses:</strong>
+  <%= @expense.masterexpenses_id %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @expense.notes %>
+</p>
+
+<p>
+  <strong>Goal:</strong>
+  <%= @expense.goal_id %>
+</p>
+
+<p>
+  <strong>One time:</strong>
+  <%= @expense.one_time %>
+</p>
+
+<%= link_to 'Edit', edit_expense_path(@expense) %> |
+<%= link_to 'Back', expenses_path %>
