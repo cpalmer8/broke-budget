@@ -1,7 +1,8 @@
 require 'test_helper'
 
 class ExpenseTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  test "is decimal" do
+    expense = Expense.new(amount: 125.10)
+    assert true
+  end
 end
