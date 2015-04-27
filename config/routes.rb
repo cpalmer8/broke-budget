@@ -1,4 +1,6 @@
 Budget::Application.routes.draw do
+  get "static_pages/home"
+  get "static_pages/help"
   resources :expenses
 
   resources :goals
@@ -6,6 +8,10 @@ Budget::Application.routes.draw do
   resources :master_expenses
 
   resources :users
+  root	'static_pages#home'
+  get    'login'   => 'sessions#new'
+  post   'login'   => 'sessions#create'
+  delete 'logout'  => 'sessions#destroy'
 
   get 'signup' => 'users#new'
   # The priority is based upon order of creation: first created -> highest priority.
