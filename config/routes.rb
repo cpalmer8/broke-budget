@@ -1,6 +1,9 @@
 Budget::Application.routes.draw do
-  get "static_pages/home"
-  get "static_pages/help"
+  root 'static_pages#home'
+  get	'help'	  =>  'static_pages#help'
+  get	'about'   =>  'static_pages#about'
+  get	'contact' =>  'static_pages#contact'
+
   resources :expenses
 
   resources :goals
@@ -8,7 +11,6 @@ Budget::Application.routes.draw do
   resources :master_expenses
 
   resources :users
-  root	'static_pages#home'
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
