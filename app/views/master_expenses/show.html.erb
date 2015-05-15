@@ -1,19 +1,26 @@
-<p id="notice"><%= notice %></p>
+<% provide(:title, @master_expense.category) %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="master_expenses">
+      <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Amount:</strong>
-  <%= @master_expense.amount %>
-</p>
+      <p>
+        <strong>Amount:</strong>
+        <%= @master_expense.amount %>
+      </p>
 
-<p>
-  <strong>Category:</strong>
-  <%= @master_expense.category %>
-</p>
+      <p>
+        <strong>Category:</strong>
+        <%= @master_expense.category %>
+      </p>
 
-<p>
-  <strong>Mandatory:</strong>
-  <%= @master_expense.mandatory %>
-</p>
+      <p>
+        <strong>Mandatory:</strong>
+        <%= @master_expense.mandatory %>
+      </p>
 
-<%= link_to 'Edit', edit_master_expense_path(@master_expense) %> |
-<%= link_to 'Back', master_expenses_path %>
+      <%= link_to 'Edit', edit_master_expense_path(@master_expense) %> |
+      <%= link_to 'Back', master_expenses_path %>
+    </section>
+  </aside>
+</div>

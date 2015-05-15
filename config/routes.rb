@@ -9,7 +9,8 @@ Budget::Application.routes.draw do
   resources :goals
 
   resources :master_expenses
-
+  get 'master'	=>  'master_expenses#show'
+  
   resources :users
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
