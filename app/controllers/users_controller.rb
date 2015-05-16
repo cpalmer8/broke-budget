@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:edit, :update, :destroy]
-  before_action :correct_user,   only: [:edit, :update]
-  before_action :admin_user,     only: :destroy
+  before_action :correct_user,   only: [:edit, :update, :destroy]
+  #before_action :admin_user,     only: :destroy
 
   def show
     @user = User.find(params[:id])
@@ -37,9 +37,10 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    User.find(params[:id]).destroy
+    @user = User.find(params[:id])
+    @user.destroy
     flash[:success] = "User deleted"
-    redirect_to users_url
+    redirect_to root_path
   end
 
   private

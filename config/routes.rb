@@ -12,6 +12,7 @@ Budget::Application.routes.draw do
   get 'master'	=>  'master_expenses#show'
   
   resources :users
+
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
