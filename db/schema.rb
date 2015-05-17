@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150515182407) do
+ActiveRecord::Schema.define(version: 20150517152547) do
 
   create_table "actual_expenses", force: true do |t|
     t.integer  "amount"
@@ -47,7 +47,10 @@ ActiveRecord::Schema.define(version: 20150515182407) do
     t.integer  "mandatory"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
+
+  add_index "master_expenses", ["user_id"], name: "index_master_expenses_on_user_id"
 
   create_table "users", force: true do |t|
     t.string   "name"

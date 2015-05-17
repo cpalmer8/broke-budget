@@ -4,7 +4,7 @@ class MasterExpensesController < ApplicationController
   # GET /master_expenses
   # GET /master_expenses.json
   def index
-    @master_expenses = MasterExpense.all
+    @master_expense = current_user.master_expenses.build(params[:master_expense])
   end
 
   # GET /master_expenses/1
@@ -24,7 +24,7 @@ class MasterExpensesController < ApplicationController
   # POST /master_expenses
   # POST /master_expenses.json
   def create
-    @master_expense = MasterExpense.new(master_expense_params)
+    @master_expense = MasterExpense.new(master_expenses_params)
 
     respond_to do |format|
       if @master_expense.save
