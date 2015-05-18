@@ -1,5 +1,13 @@
 <%= will_paginate @master_expenses %>
 
+<% @master_expenses.each do |expense| %>
+  <li>
+    <%= expenses.amount %>
+  </li>
+<% end %>
+
+<%= will_paginate @master_expenses %>
+
 <br>
 
 <%= link_to 'New Master Expense', '#new_master_expense_modal', 'data-toggle' => 'modal' %>
