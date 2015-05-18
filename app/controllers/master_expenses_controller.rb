@@ -30,7 +30,7 @@ class MasterExpensesController < ApplicationController
     respond_to do |format|
       if @master_expense.save
         format.html { redirect_to @master_expense, notice: 'Master expense was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @master_expense }i
+        format.json { render action: 'show', status: :created, location: @master_expense }
         format.js   { render action: 'show', status: :created, location: @master_expense }
       else
         format.html { render action: 'new' }
