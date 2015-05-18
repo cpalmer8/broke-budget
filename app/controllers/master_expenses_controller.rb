@@ -4,7 +4,7 @@ class MasterExpensesController < ApplicationController
   # GET /master_expenses
   # GET /master_expenses.json
   def index
-    @master_expenses = MasterExpense.where(:user_id => current_user).paginate(:page => params[:page])
+    @master_expenses = MasterExpense.where(:user_id => current_user.id).paginate(:page => params[:page])
     @master_expense = MasterExpense.new
   end
 
