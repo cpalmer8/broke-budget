@@ -5,6 +5,7 @@ class MasterExpensesController < ApplicationController
   # GET /master_expenses.json
   def index
     @master_expenses = MasterExpense.where(:user_id => current_user).paginate(:page => params[:page])
+    @master_expense = MasterExpense.new
   end
 
   # GET /master_expenses/1
@@ -24,15 +25,17 @@ class MasterExpensesController < ApplicationController
   # POST /master_expenses
   # POST /master_expenses.json
   def create
-    @master_expense = MasterExpense.new(master_expenses_params)
+    @master_expense = MasterExpense.new(master_expense_params)
 
     respond_to do |format|
       if @master_expense.save
         format.html { redirect_to @master_expense, notice: 'Master expense was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @master_expense }
+        format.json { render action: 'show', status: :created, location: @master_expense }i
+        format.js   { render action: 'show', status: :created, location: @master_expense }
       else
         format.html { render action: 'new' }
         format.json { render json: @master_expense.errors, status: :unprocessable_entity }
+        format.js   { render json: @master_expense.errors, status: :unprocessable_entity }
       end
     end
   end
