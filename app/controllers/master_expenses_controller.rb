@@ -26,7 +26,7 @@ class MasterExpensesController < ApplicationController
   # POST /master_expenses.json
   def create
     @master_expense = MasterExpense.new(master_expense_params)
-
+    @master_expense.user_id = current_user.id if current_user
     respond_to do |format|
       if @master_expense.save
         format.html { redirect_to @master_expense, notice: 'Master expense was successfully created.' }
