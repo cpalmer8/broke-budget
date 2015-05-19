@@ -1,5 +1,10 @@
 <div class="master_expenses_table">
-  <%= render 'master_expenses' %>
+  <%= will_paginate @master_expenses %>
+  <% @master_expenses.each do |expense| %>
+    <%= render partial: 'master_expenses_row', locals: {expense: expense} %>
+  <% end %>
+
+  <%= will_paginate @master_expenses %>
 </div>
 <%= link_to 'New Master Expense', '#new_master_expense_modal', 'data-toggle' => 'modal' %>
 
