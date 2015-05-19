@@ -35,8 +35,8 @@ class MasterExpensesController < ApplicationController
       if @master_expense.save
         @master_expenses = MasterExpense.where(:user_id => current_user.id).paginate(:page => params[:page], :per_page => 5)
         format.html { redirect_to master_expenses_route, notice: 'Master expense was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @master_expenses }
-        format.js   { render action: 'show', status: :created, location: @master_expenses }
+        format.json { render action: 'show', status: :created, location: @master_expense }
+        format.js   { render action: 'show', status: :created, location: @master_expense }
       else
         format.html { render action: 'new' }
         format.json { render json: @master_expense.errors, status: :unprocessable_entity }
