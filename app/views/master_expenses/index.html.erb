@@ -1,15 +1,6 @@
-<%= will_paginate @master_expenses %>
-
-<% @master_expenses.each do |expense| %>
-  <li>
-    <%= expense.amount %>
-  </li>
-<% end %>
-
-<%= will_paginate @master_expenses %>
-
-<br>
-
+<div class="master_expenses_table">
+  <%= render 'master_expenses' %>
+</div>
 <%= link_to 'New Master Expense', '#new_master_expense_modal', 'data-toggle' => 'modal' %>
 
 <div class="modal fade" id="new_master_expense_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
