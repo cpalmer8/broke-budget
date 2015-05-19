@@ -1,2 +1,2 @@
-$('#master_expenses_table').html("<%= escape_javascript(render partial: 'master_expenses', collection: @master_expenses) %>");
+$('#master_expenses_table').html("<%= escape_javascript(render partial: 'master_expenses', :master_expenses: @master_expenses) %>");
 $('#new_master_expense_modal').modal_success();
