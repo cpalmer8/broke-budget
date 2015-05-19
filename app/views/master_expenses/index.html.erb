@@ -1,4 +1,4 @@
-<div class="master_expenses_table">
+<div id="master_expenses_table">
   <%= will_paginate @master_expenses %>
   <% @master_expenses.each do |expense| %>
     <p><%= render partial: 'master_expenses_row', locals: {expense: expense} %></p>
