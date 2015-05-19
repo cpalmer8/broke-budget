@@ -1,2 +1,2 @@
-$('#master_expenses_table').append("<%= j render partial: 'master_expenses', locals: {master_expenses: @master_expenses } %>");
+$('#master_expenses_table').html("<%= j render partial: 'master_expenses', locals: {master_expenses: @master_expenses } %>");
 $('#new_master_expense_modal').modal_success();
