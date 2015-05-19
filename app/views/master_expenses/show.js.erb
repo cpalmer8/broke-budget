@@ -1,2 +1,2 @@
-$("#master_expenses_table").html("<%= escape_javascript(render(:partial => 'master_expenses_row', :locals => {:object => @expense})).html_safe %>");
+$("#master_expenses_table").html("<%= escape_javascript(render(:partial => 'master_expenses_row', :object => @expense})).html_safe %>");
 $('#new_master_expense_modal').modal_success();
