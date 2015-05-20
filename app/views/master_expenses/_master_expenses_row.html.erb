@@ -1,1 +1,4 @@
-<%= expense.amount %>
+<%= will_paginate @expenses %>
+<% expenses.each do |expense| %>
+  <p><%= expense.amount %></p>
+<% end %>

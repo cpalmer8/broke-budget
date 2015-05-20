@@ -13,6 +13,16 @@
 
 ActiveRecord::Schema.define(version: 20150517152547) do
 
+  create_table "actual_expenses", force: true do |t|
+    t.integer  "amount"
+    t.integer  "masterexpenses_id"
+    t.string   "notes"
+    t.integer  "goal_id"
+    t.integer  "one_time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "expenses", force: true do |t|
     t.decimal  "amount"
     t.integer  "masterexpenses_id"

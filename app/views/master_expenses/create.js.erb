@@ -1,0 +1,4 @@
+<%= puts 'CONTENT' %>
+<%= puts @expenses %>
+$('#master_expenses_table').html("<%= escape_javascript(render partial: 'master_expenses_row', locals: { expenses: @expenses } ) %>");
+$('#new_master_expense_modal').modal_success();
