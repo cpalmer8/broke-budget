@@ -24,7 +24,6 @@ class MasterExpensesController < ApplicationController
 
   # GET /master_expenses/1/edit
   def edit
-    @master_expense = MasterExpense.find(params[:id])
   end
 
   # POST /master_expenses
