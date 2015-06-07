@@ -24,6 +24,7 @@ class MasterExpensesController < ApplicationController
 
   # GET /master_expenses/1/edit
   def edit
+    @master_expense = MasterExpense.find(params[:id])
   end
 
   # POST /master_expenses
@@ -53,6 +54,7 @@ class MasterExpensesController < ApplicationController
       if @master_expense.update(master_expense_params)
         format.html { redirect_to @master_expense, notice: 'Master expense was successfully updated.' }
         format.json { head :no_content }
+        format.js
       else
         format.html { render action: 'edit' }
         format.json { render json: @master_expense.errors, status: :unprocessable_entity }

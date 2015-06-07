@@ -2,7 +2,7 @@
 <% expenses.each do |expense| %>
   <p><%= expense.amount %></p>
   <p><%= link_to 'Show', expense %><p>
-  <p><%= link_to 'Edit', expense, '#editModal', 'data-toggle' => 'modal' %></p>
+  <p><%= link_to 'Edit', '#', 'data-target' => "#editModal", 'data-toggle' => 'modal' %></p>
   <p><%= link_to 'Destroy', expense, method: :delete, data: { confirm: 'Are you sure?' } %></p>
 <% end %>
 
