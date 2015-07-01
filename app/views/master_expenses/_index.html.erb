@@ -1,0 +1,8 @@
+<%= will_paginate @master_expenses %>
+    <%= @master_expenses.each do |expense| %>
+      <p><%= expense.amount %></p>
+      <p><%= link_to 'Show', expense %><p>
+      <p><%= link_to 'Edit',  edit_master_expense_path(expense), remote:true %></p>
+      <p><a data-toggle="modal" data-target="#myModal" data-remote="<%= edit_master_expense_path(expense) %> #modal-edit-fields" class="btn btn-mini">Edit (2)</a></p>
+      <p><%= link_to 'Destroy', expense, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+    <% end %>

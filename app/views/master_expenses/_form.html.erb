@@ -1,5 +1,6 @@
-<%= form_for(@master_expense, remote: true) do |f| %>  
-    <%= @master_expense.id %>  
+<%= form_for(@master_expense, remote: true, html: { class: "form-horizontal", style: "display:inline;" }) do |f| %>  
+    <%= @master_expense.id %> 
+  <div class="modal-body"> 
   <% if @master_expense.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@master_expense.errors.count, "error") %> prohibited this master_expense from being saved:</h2>
@@ -27,7 +28,9 @@
     <%= f.number_field :mandatory, class: 'form-control' %>
     <span class="help-block"></span>
   </div>
-  <div class="actions">
-    <%= f.submit "Submit", class: 'btn btn-default' %>
+  </div>
+  <div class="modal-footer">
+    <%= f.submit class: "btn btn-primary" %>
+    <%= link_to "Cancel", "#", class: "btn", data: {dismiss: "modal"} %>
   </div>
 <% end %>

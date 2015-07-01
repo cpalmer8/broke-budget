@@ -32,6 +32,7 @@ class MasterExpensesController < ApplicationController
   def create
     @master_expense = MasterExpense.new(master_expense_params)
     @master_expense.user_id = current_user.id if current_user
+    @master_expenses = MasterExpense.where(:user_id => current_user.id).paginate(:page => params[:page], :per_page => 5)
     respond_to do |format|
       if @master_expense.save
         @expenses = MasterExpense.where(:user_id => current_user.id).paginate(:page => params[:page], :per_page => 5)
@@ -51,6 +52,7 @@ class MasterExpensesController < ApplicationController
   # PATCH/PUT /master_expenses/1.json
   def update
     respond_to do |format|
+      @master_expenses = MasterExpense.where(:user_id => current_user.id).paginate(:page => params[:page], :per_page => 5)
       if @master_expense.update(master_expense_params)
         format.html { redirect_to @master_expense, notice: 'Master expense was successfully updated.' }
         format.json { head :no_content }
