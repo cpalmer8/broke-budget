@@ -11,17 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150517152547) do
-
-  create_table "actual_expenses", force: true do |t|
-    t.integer  "amount"
-    t.integer  "masterexpenses_id"
-    t.string   "notes"
-    t.integer  "goal_id"
-    t.integer  "one_time"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(version: 20150701170323) do
 
   create_table "expenses", force: true do |t|
     t.decimal  "amount"
@@ -39,7 +29,10 @@ ActiveRecord::Schema.define(version: 20150517152547) do
     t.date     "complete_date"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
+
+  add_index "goals", ["user_id"], name: "index_goals_on_user_id"
 
   create_table "master_expenses", force: true do |t|
     t.decimal  "amount"

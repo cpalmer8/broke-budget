@@ -4,7 +4,11 @@ class GoalsController < ApplicationController
   # GET /goals
   # GET /goals.json
   def index
-    @goals = Goal.all
+    if logged_in?
+      @goals = Goal.where(:user_id => current_user.id).paginate(:page => params[:page], :per_page => 5)
+    else
+      @goals = Goal.paginate(:page => params[:page], :per_page => 5)
+    end
   end
 
   # GET /goals/1
@@ -19,20 +23,25 @@ class GoalsController < ApplicationController
 
   # GET /goals/1/edit
   def edit
+    @goal = Goal.find(params[:id])
   end
 
   # POST /goals
   # POST /goals.json
   def create
     @goal = Goal.new(goal_params)
-
+    @goal.user_id = current_user.id if current_user
+    @goals = Goal.where(:user_id => current_user.id).paginate(:page => params[:page], :per_page => 5)
     respond_to do |format|
       if @goal.save
+        @goals = Goal.where(:user_id => current_user.id).paginate(:page => params[:page], :per_page => 5)
         format.html { redirect_to @goal, notice: 'Goal was successfully created.' }
         format.json { render action: 'show', status: :created, location: @goal }
+        format.js
       else
         format.html { render action: 'new' }
         format.json { render json: @goal.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -41,12 +50,15 @@ class GoalsController < ApplicationController
   # PATCH/PUT /goals/1.json
   def update
     respond_to do |format|
+      @goals = Goal.where(:user_id => current_user.id).paginate(:page => params[:page], :per_page => 5)
       if @goal.update(goal_params)
         format.html { redirect_to @goal, notice: 'Goal was successfully updated.' }
         format.json { head :no_content }
+        format.js
       else
         format.html { render action: 'edit' }
         format.json { render json: @goal.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end

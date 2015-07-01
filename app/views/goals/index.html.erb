@@ -1,31 +1,11 @@
-<h1>Listing goals</h1>
+<div class="goal-index">
+  <%= render 'index' %>
+</div>
+<%= link_to 'New Goal', new_goal_path, remote:true  %>
 
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Amount</th>
-      <th>Complete date</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+<div id="goal-modal" class="modal fade">
+  <div class="modal-dialog">
+   <div id="inner-goal-modal" class="modal-content"></div>
+  </div>
+</div>
 
-  <tbody>
-    <% @goals.each do |goal| %>
-      <tr>
-        <td><%= goal.name %></td>
-        <td><%= goal.amount %></td>
-        <td><%= goal.complete_date %></td>
-        <td><%= link_to 'Show', goal %></td>
-        <td><%= link_to 'Edit', edit_goal_path(goal) %></td>
-        <td><%= link_to 'Destroy', goal, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Goal', new_goal_path %>

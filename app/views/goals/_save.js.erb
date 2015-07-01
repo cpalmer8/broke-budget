@@ -1,0 +1,10 @@
+$("ul.errors").html("")
+<% if @goal.errors.any? %>
+  <% puts @goal.errors %>
+  <% @goal.errors.full_messages.each do |message| %>
+    $("ul.errors").append($("<li />").html("<%= message.html_safe %>"))
+  <% end %>
+<% else %>
+  $(".goal-index").html("<%= escape_javascript(render 'index') %>")
+  $("#goal-modal").modal("hide")
+<% end %>

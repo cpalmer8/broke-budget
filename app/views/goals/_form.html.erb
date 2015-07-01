@@ -1,4 +1,5 @@
-<%= form_for(@goal) do |f| %>
+<%= form_for(@goal, remote: true, html: { class: "form-horizontal", style: "display:inline;" }) do |f| %>
+  <div class="modal-body">
   <% if @goal.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@goal.errors.count, "error") %> prohibited this goal from being saved:</h2>
@@ -23,7 +24,8 @@
     <%= f.label :complete_date %><br>
     <%= f.date_select :complete_date %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="modal-footer">
+    <%= f.submit class: "btn btn-primary" %>
+    <%= link_to "Cancel", "#", class: "btn", data: {dismiss: "modal"} %>
   </div>
 <% end %>
