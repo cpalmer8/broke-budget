@@ -1,0 +1,7 @@
+<%= will_paginate @expenses %>
+    <%= @expenses.each do |expense| %>
+      <p><%= expense.amount %></p>
+      <p><%= link_to 'Show', expense %><p>
+      <p><%= link_to 'Edit',  edit_expense_path(expense), remote:true %></p>
+      <p><%= link_to 'Destroy', expense, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+    <% end %>

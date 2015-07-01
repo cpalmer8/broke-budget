@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6 }, allow_blank: true
   has_many :master_expenses
   has_many :goals
+  has_many :expenses
 
   # Returns the hash digest of the given string.
   def User.digest(string)

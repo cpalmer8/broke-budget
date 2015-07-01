@@ -4,7 +4,11 @@ class ExpensesController < ApplicationController
   # GET /expenses
   # GET /expenses.json
   def index
-    @expenses = Expense.all
+    if logged_in?
+      @expenses = Expense.where(:user_id => current_user.id).paginate(:page => params[:page], :per_page => 5)
+    else
+      @expenses = Expense.paginate(:page => params[:page], :per_page => 5)
+    end
   end
 
   # GET /expenses/1
@@ -19,20 +23,25 @@ class ExpensesController < ApplicationController
 
   # GET /expenses/1/edit
   def edit
+    @expense = Expense.find(params[:id])
   end
 
   # POST /expenses
   # POST /expenses.json
   def create
     @expense = Expense.new(expense_params)
-
+    @expense.user_id = current_user.id if current_user
+    @expenses = Expense.where(:user_id => current_user.id).paginate(:page => params[:page], :per_page => 5)
     respond_to do |format|
       if @expense.save
+        @expenses = Expense.where(:user_id => current_user.id).paginate(:page => params[:page], :per_page => 5)
         format.html { redirect_to @expense, notice: 'Expense was successfully created.' }
         format.json { render action: 'show', status: :created, location: @expense }
+        format.js
       else
         format.html { render action: 'new' }
         format.json { render json: @expense.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
@@ -41,12 +50,15 @@ class ExpensesController < ApplicationController
   # PATCH/PUT /expenses/1.json
   def update
     respond_to do |format|
+      @expenses = Expense.where(:user_id => current_user.id).paginate(:page => params[:page], :per_page => 5)
       if @expense.update(expense_params)
         format.html { redirect_to @expense, notice: 'Expense was successfully updated.' }
         format.json { head :no_content }
+        format.js
       else
         format.html { render action: 'edit' }
         format.json { render json: @expense.errors, status: :unprocessable_entity }
+        format.js
       end
     end
   end
