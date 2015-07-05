@@ -7,7 +7,7 @@ class ExpensesController < ApplicationController
     if logged_in?
       @expenses = Expense.where(:user_id => current_user.id).paginate(:page => params[:page], :per_page => 5)
     else
-      @expenses = Expense.paginate(:page => params[:page], :per_page => 5)
+      redirect_to :login
     end
   end
 

@@ -7,7 +7,7 @@ class GoalsController < ApplicationController
     if logged_in?
       @goals = Goal.where(:user_id => current_user.id).paginate(:page => params[:page], :per_page => 5)
     else
-      @goals = Goal.paginate(:page => params[:page], :per_page => 5)
+      redirect_to :login
     end
   end
 
