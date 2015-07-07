@@ -17,8 +17,8 @@
     <%= f.text_field :amount %>
   </div>
   <div class="field">
-    <%= f.label :masterexpenses_id %><br>
-    <%= f.number_field :masterexpenses_id %>
+    <%= f.label :master_expense_id %><br>
+    <%= f.collection_select :master_expense_id, MasterExpense.where(:user_id => current_user.id), :id, :category %>
   </div>
   <div class="field">
     <%= f.label :notes %><br>
@@ -26,7 +26,7 @@
   </div>
   <div class="field">
     <%= f.label :goal_id %><br>
-    <%= f.number_field :goal_id %>
+    <%= f.collection_select :goal_id, Goal.where(:user_id => current_user.id), :id, :name %>
   </div>
   <div class="field">
     <%= f.label :one_time %><br>

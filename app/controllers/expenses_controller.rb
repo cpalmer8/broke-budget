@@ -19,6 +19,7 @@ class ExpensesController < ApplicationController
   # GET /expenses/new
   def new
     @expense = Expense.new
+    @master_expenses = MasterExpense.where(:user_id => current_user.id)
   end
 
   # GET /expenses/1/edit
