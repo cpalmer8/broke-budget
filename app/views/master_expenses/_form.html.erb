@@ -1,5 +1,4 @@
 <%= form_for(@master_expense, remote: true, html: { class: "form-horizontal", style: "display:inline;" }) do |f| %>  
-    <%= @master_expense.id %> 
   <div class="modal-body"> 
   <% if @master_expense.errors.any? %>
     <div id="error_explanation">

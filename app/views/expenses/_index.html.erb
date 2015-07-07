@@ -1,5 +1,5 @@
 <%= will_paginate @expenses %>
-    <%= @expenses.each do |expense| %>
+    <% @expenses.each do |expense| %>
       <p><%= expense.amount %></p>
       <p><%= link_to 'Show', expense %><p>
       <p><%= link_to 'Edit',  edit_expense_path(expense), remote:true %></p>

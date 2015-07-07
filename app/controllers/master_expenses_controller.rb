@@ -6,10 +6,10 @@ class MasterExpensesController < ApplicationController
   def index
     if logged_in?
       @master_expenses = MasterExpense.where(:user_id => current_user.id).paginate(:page => params[:page], :per_page => 5)
+      @master_expense = MasterExpense.new
     else
       redirect_to :login
     end
-    @master_expense = MasterExpense.new
   end
 
   # GET /master_expenses/1
@@ -36,7 +36,6 @@ class MasterExpensesController < ApplicationController
     respond_to do |format|
       if @master_expense.save
         @expenses = MasterExpense.where(:user_id => current_user.id).paginate(:page => params[:page], :per_page => 5)
-        puts @expenses
         format.html { redirect_to @master_expense, notice: 'Master expense was successfully created.' }
         format.json { render action: 'show', status: :created, location: @master_expense }
         format.js
