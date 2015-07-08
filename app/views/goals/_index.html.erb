@@ -4,6 +4,9 @@
       <tr>
         <th>Name</th>
         <th>Amount</th>
+        <th>Complete Date</th>
+        <th>Original Projected Weekly Contribution</th>
+        <th>Current Projected Weekly Contribution</th>
       </tr>
     </thead>
     <tbody>
@@ -11,6 +14,9 @@
         <tr>
           <td><%= goal.name %> - <%= link_to 'Edit',  edit_goal_path(goal), remote:true %>/<%= link_to 'Destroy', goal, method: :delete, data: { confirm: 'Are you sure?' } %>
           <td><%= goal.amount %></td>
+          <td><%= goal.complete_date %></td>
+          <td><%= goals_contribution(goal.id) %></td> 
+          <td><%= goals_projection(goal.id) %></td>
         </tr>
       <% end %>
     </tbody>

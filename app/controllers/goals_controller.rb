@@ -1,6 +1,7 @@
 class GoalsController < ApplicationController
   before_action :set_goal, only: [:show, :edit, :update, :destroy]
-
+  helper_method :goals_contribution
+  helper_method :goals_projection
   # GET /goals
   # GET /goals.json
   def index
@@ -86,11 +87,25 @@ class GoalsController < ApplicationController
 
     #Calculating expected contribution for goals
     def goals_contribution(id)
-      goal = Goal.find(params[:id])
+      goal = Goal.find(id)
       complete_date = goal.complete_date
-      days_to_complete = (complete_date - Date.today).to_i
+      initial_date = goal.created_at.to_date
+      days_to_complete = (complete_date - initial_date).to_i
       weeks_to_complete = days_to_complete/7
       projected_weekly_contribution = goal.amount/weeks_to_complete
-      return projected_weekly_contribution
+      return projected_weekly_contribution.round(2)
+    end
+    
+    def goals_projection(id)
+      goal = Goal.find(id)
+      complete_date = goal.complete_date
+      initial_date = goal.created_at.to_date
+      days_to_complete = (complete_date - initial_date).to_i
+      weeks_to_complete = days_to_complete/7
+      existing_contributions = Expense.where(:goal_id => id).sum("amount")
+      remaining_total = goal.amount - existing_contributions
+      remaining_time = ((complete_date - Date.today).to_i)/7
+      projected_finish = remaining_total/remaining_time
+      return projected_finish.round(2)
     end
 end
