@@ -83,4 +83,14 @@ class GoalsController < ApplicationController
     def goal_params
       params.require(:goal).permit(:name, :amount, :complete_date)
     end
+
+    #Calculating expected contribution for goals
+    def goals_contribution(id)
+      goal = Goal.find(params[:id])
+      complete_date = goal.complete_date
+      days_to_complete = (complete_date - Date.today).to_i
+      weeks_to_complete = days_to_complete/7
+      projected_weekly_contribution = goal.amount/weeks_to_complete
+      return projected_weekly_contribution
+    end
 end
