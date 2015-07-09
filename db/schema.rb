@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150703174908) do
+ActiveRecord::Schema.define(version: 20150709152328) do
 
   create_table "expenses", force: true do |t|
     t.decimal  "amount"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20150703174908) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.decimal  "weekly_contribution"
   end
 
   add_index "goals", ["user_id"], name: "index_goals_on_user_id"

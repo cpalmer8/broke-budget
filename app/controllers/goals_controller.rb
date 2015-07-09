@@ -32,6 +32,7 @@ class GoalsController < ApplicationController
   def create
     @goal = Goal.new(goal_params)
     @goal.user_id = current_user.id if current_user
+    @goal.weekly_contribution = goals_calc(@goal.complete_date, Date.today, @goal.amount)
     @goals = Goal.where(:user_id => current_user.id).paginate(:page => params[:page], :per_page => 5)
     respond_to do |format|
       if @goal.save
@@ -95,6 +96,15 @@ class GoalsController < ApplicationController
       projected_weekly_contribution = goal.amount/weeks_to_complete
       return projected_weekly_contribution.round(2)
     end
+
+    def goals_calc(complete_date, initial_date, amount)
+      created_date = initial_date
+      days_to_complete = (complete_date - created_date).to_i
+      weeks_to_complete = days_to_complete/7
+      projected_weekly_contribution = amount/weeks_to_complete
+      puts projected_weekly_contribution
+      return projected_weekly_contribution.round(2)
+    end 
     
     def goals_projection(id)
       goal = Goal.find(id)
