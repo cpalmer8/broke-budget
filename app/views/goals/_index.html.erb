@@ -7,6 +7,7 @@
         <th>Complete Date</th>
         <th>Original Projected Weekly Contribution</th>
         <th>Current Projected Weekly Contribution</th>
+        <th>Complete Date With Original Weekly Contribution</th>
       </tr>
     </thead>
     <tbody>
@@ -17,6 +18,7 @@
           <td><%= goal.complete_date %></td>
           <td><%= goal.weekly_contribution %></td> 
           <td><%= goals_projection(goal.id) %></td>
+          <td><%= goal_projected_date(goal.id) %></td>
         </tr>
       <% end %>
     </tbody>
