@@ -12,7 +12,7 @@ Budget::Application.routes.draw do
   get 'master'	=>  'master_expenses#show'
   
   resources :users
-
+  resources :account_activations, only: [:edit]
   get    'login'   => 'sessions#new'
   post   'login'   => 'sessions#create'
   delete 'logout'  => 'sessions#destroy'
