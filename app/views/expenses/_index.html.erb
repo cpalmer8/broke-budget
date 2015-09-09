@@ -12,7 +12,7 @@
         <tr>
           <td><%= expense.amount %> - <%= link_to 'Edit',  edit_expense_path(expense), remote:true %>/<%= link_to 'Destroy', expense, method: :delete, data: { confirm: 'Are you sure?' } %>
           <td><%= expense.master_expense.category %></td>
-	  <td><%= expense.goal.name %></td>
+          <td><% if expense.goal_id %><%= expense.goal.name %><% else %>None<% end %></td>
         </tr>
       <% end %>
     </tbody>

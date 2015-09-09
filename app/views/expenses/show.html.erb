@@ -16,8 +16,10 @@
 </p>
 
 <p>
-  <strong>Goal:</strong>
-  <%= @expense.goal_id %>
+  <% if @expense.goal_id %>
+    <strong>Goal:</strong>
+    <%= @expense.goal_id %>
+  <% end %>
 </p>
 
 <p>
