@@ -5,7 +5,11 @@ class ExpensesController < ApplicationController
   # GET /expenses.json
   def index
     if logged_in?
-      @expenses = Expense.where(:user_id => current_user.id).paginate(:page => params[:page], :per_page => 5)
+      if params.has_key?("commit")
+        @expenses = Expense.where(:user_id => current_user.id).where("strftime('%m', created_at) = ?", params[:month]).paginate(:page => params[:page], :per_page => 5)
+      else
+        @expenses = Expense.where(:user_id => current_user.id).paginate(:page => params[:page], :per_page => 5)
+      end
     else
       redirect_to :login
     end

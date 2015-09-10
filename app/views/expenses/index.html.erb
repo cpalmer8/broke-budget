@@ -2,6 +2,14 @@
   <%= render 'index' %>
 </div>
 <%= link_to 'New Expense', new_expense_path, remote:true  %>
+<br>
+<%= form_tag '', :method => :get do %>
+  <%= select_tag :month, options_for_select([["January", "01"], ["February", "02"], ["March", "03"], 
+						["April", "04"], ["May", "05"], ["June", "06"], 
+						["July", "07"], ["August", "08"], ["September", "09"], 
+						["October", "10"], ["November", "11"], ["December", "12"]]) %>
+  <%= submit_tag 'Filter' %>
+<% end %>
 
 <div id="expense-modal" class="modal fade">
   <div class="modal-dialog">
